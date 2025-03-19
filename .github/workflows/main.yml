@@ -41,9 +41,7 @@ jobs:
       - name: Build Package
         run: | 
          ls -ltr dist
-         mv dist/*.whl bike_sharing_api
-         ls -ltr bike_sharing_api
-         chmod 777 bike_sharing_api/bikeshare_model-0.0.1-py3-none-any.whl
+         mv dist/*.whl .
          pip install -r bike_sharing_api/requirements.txt
 
       - name: Fast API
