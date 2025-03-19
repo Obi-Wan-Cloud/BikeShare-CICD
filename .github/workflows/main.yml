@@ -36,15 +36,12 @@ jobs:
           pip install build
           python -m build
           ls -ltr
-          ls -ltr bikeshare_model
-          ls -ltr bikeshare_model/trained_model
-          ls -ltr bikeshare_model/dist
  
 
       - name: Build Package
         run: | 
-         ls -ltr bikeshare_model/dist
-         mv bikeshare_model/dist/*.whl bikeshare_model_api
+         ls -ltr dist
+         mv dist/*.whl bikeshare_model_api
          pip install -r bikeshare_model_api/requirements.txt
 
       - name: Fast API
