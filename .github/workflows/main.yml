@@ -22,7 +22,7 @@ jobs:
           pip install -r requirements/requirements.txt
 
       - name: Train Model
-        run: python train_pipeline.py
+        run: python bikeshare_model/train_pipeline.py
 
       - name: Install dependencies for test
         run: |
