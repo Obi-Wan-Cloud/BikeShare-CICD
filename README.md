@@ -145,20 +145,23 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Log in to DockerHub
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: |
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+       - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
 
-      - name: Build Docker Image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/bikeshare-api:latest .
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Push Docker Image to DockerHub
-        run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/bikeshare-api:latest
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: 'sneh1919'
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: sneh1919/bikeshare:latest 
 ```
 
 ---
