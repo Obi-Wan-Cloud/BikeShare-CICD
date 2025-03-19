@@ -47,7 +47,7 @@ jobs:
       - name: Fast API
         run: | 
          ls -ltr bike_sharing_api
-         python bike_sharing_api/app/main.py
+         python bike_sharing_api/app/main.py &
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
