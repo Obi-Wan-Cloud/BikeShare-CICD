@@ -1,0 +1,57 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  train-test-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements/requirements.txt
+
+      - name: Train Model
+        run: python train_pipeline.py
+
+      - name: Install dependencies for test
+        run: |
+          pip install -r requirements/test_requirements.txt
+
+      - name: Test Model
+        run: pytest
+
+      - name: Install dependencies for test and build
+        run: |
+          pip install build
+          python -m build
+
+      - name: Build Package
+        run: | 
+         ls -ltr
+         mv *.whl bikeshare_model_api
+         pip install -r bikeshare_model_api/requirements.txt
+
+      - name: Fast API
+        run: | 
+         ls -ltr bikeshare_model_api
+         python bikeshare_model_api/app/main.py
+
+  dockerize-and-push:
+    needs: train-test-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+
