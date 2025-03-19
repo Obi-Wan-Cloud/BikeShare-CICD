@@ -41,13 +41,13 @@ jobs:
       - name: Build Package
         run: | 
          ls -ltr dist
-         mv dist/*.whl bikeshare_model_api
-         pip install -r bikeshare_model_api/requirements.txt
+         mv dist/*.whl bike_sharing_api
+         pip install -r bike_sharing_api/requirements.txt
 
       - name: Fast API
         run: | 
-         ls -ltr bikeshare_model_api
-         python bikeshare_model_api/app/main.py
+         ls -ltr bike_sharing_api
+         python bike_sharing_api/app/main.py
 
   dockerize-and-push:
     needs: train-test-package
