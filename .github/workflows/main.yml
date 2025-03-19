@@ -42,6 +42,7 @@ jobs:
         run: | 
          ls -ltr dist
          mv dist/*.whl bike_sharing_api
+         ls -ltr bike_sharing_api
          pip install -r bike_sharing_api/requirements.txt
 
       - name: Fast API
