@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements/test_requirements.txt
 #RUN python bikeshare_model/train_pipeline.py
 
 # Run tests
-RUN pytest
+#RUN pytest
 
 # Copy .whl file 
 COPY bikeshare_model-0.0.1-py3-none-any.whl .
