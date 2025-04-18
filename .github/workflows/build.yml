@@ -62,7 +62,7 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-         DOCKER_USER: ${{ secrets.DOCKER_USER_NAME }}
+         username: 'BASHEEDS'
          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASS_TOKEN }}
         
       - name: Build and push
