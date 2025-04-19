@@ -3,7 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - '*' # Or specify your working branches in your fork
+  pull_request:
+    branches:
+      - '*' # Or specify the target branches in your fork
 
 jobs:
   train-test-package:
